@@ -1,0 +1,38 @@
+@charset "EUC-KR";
+
+
+html, body {
+	border: 5px solid blue;
+	height : 100%;
+	width: 100%;
+	background: #D8D8D8;
+	margin: 0 auto;
+}
+
+section {
+	border: 5px solid green;
+	margin : 5px;
+	height : 90%;
+}
+.dataview1 {
+	border: 5px solid red;
+	background: #FFFFFF;
+}
+
+.dataview {
+	
+	border: 5px solid red;
+	background: #FFFFFF;
+	width : 600px;
+	position: relative;
+}
+
+#dataview1 {
+	float : left;
+	margin : 10px 10px 10px 10px;
+}
+
+#dataview2 {
+	float : left; 
+	margin : 10px 10px 10px 0px;
+}
