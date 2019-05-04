@@ -9,24 +9,33 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Dashboard</title>
-
+  <title>Air L&C - Dashboard</title>
+  <script src="resources/jquery-3.3.1.min.js" type="text/javascript"></script>
   <!-- Custom fonts for this template-->
   <link href="resources/templates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/js/bootstrap4-toggle.min.js"></script>
   <!-- Page level plugin CSS-->
   <link href="resources/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="resources/templates/css/sb-admin.css" rel="stylesheet">
-
+  
+<script type="text/javascript">
+	$( document ).ready(function() {
+		/* $("#chart").click(function(){	// chart 클릭
+			location.href = 'charts';
+		}); */
+		
+	}); 
+</script>
 </head>
 
 <body id="page-top">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="home">Start Bootstrap</a>
+    <a class="navbar-brand mr-1" href="home">Air L&C</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -34,19 +43,19 @@
 
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <div class="input-group">
+      <!-- <div class="input-group">
         <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
           <button class="btn btn-primary" type="button">
             <i class="fas fa-search"></i>
           </button>
         </div>
-      </div>
+      </div> -->
     </form>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
-      <li class="nav-item dropdown no-arrow mx-1">
+      <!-- <li class="nav-item dropdown no-arrow mx-1">
         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bell fa-fw"></i>
           <span class="badge badge-danger">9+</span>
@@ -69,7 +78,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </li>
+      </li> -->
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
@@ -104,20 +113,21 @@
           <h6 class="dropdown-header">Login Screens:</h6>
           <a class="dropdown-item" href="login">Login</a>
           <a class="dropdown-item" href="register">Register</a>
-          <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+          <a class="dropdown-item" href="forgot-password">Forgot Password</a>
           <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item" href="404.html">404 Page</a>
-          <a class="dropdown-item" href="blank.html">Blank Page</a>
+          <a class="dropdown-item" href="404">404 Page</a>
+          <a class="dropdown-item" href="blank">Blank Page</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+     	 <!-- <a id="chart" class="nav-link"> -->
+        <a class="nav-link" href="charts">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="tables">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
       </li>
@@ -137,77 +147,47 @@
 
         <!-- Icon Cards-->
         <div class="row">
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-primary o-hidden h-100">
+          <div class="col-xl-4 col-sm-6 mb-3">
+         <!--  <div class="card text-white bg-primary o-hidden h-100"> -->
+            <div class="card bg-primary o-hidden h-100">
               <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-comments"></i>
-                </div>
-                <div class="mr-5">26 New Messages!</div>
+                <div class="mr-5">Temperature</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">View Details</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
-                </span>
-              </a>
+              
             </div>
           </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-warning o-hidden h-100">
+          <div class="col-xl-4 col-sm-6 mb-3">
+            <div class="card bg-warning o-hidden h-100">
               <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-list"></i>
-                </div>
-                <div class="mr-5">11 New Tasks!</div>
+                <div class="mr-5">Humidity</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">View Details</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
-                </span>
-              </a>
+              
             </div>
           </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-success o-hidden h-100">
+          <div class="col-xl-4 col-sm-6 mb-3">
+            <div class="card bg-success o-hidden h-100">
               <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-shopping-cart"></i>
-                </div>
-                <div class="mr-5">123 New Orders!</div>
+                <div class="mr-5">Micro Dust</div>
+                <input type="checkbox" checked data-toggle="toggle" data-size="sm" data-onstyle="info">
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">View Details</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
-                </span>
-              </a>
+              
             </div>
           </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-danger o-hidden h-100">
+          <!-- <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card bg-danger o-hidden h-100">
               <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fas fa-fw fa-life-ring"></i>
-                </div>
-                <div class="mr-5">13 New Tickets!</div>
+                <div class="mr-5">ON/OFF</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">View Details</span>
-                <span class="float-right">
-                  <i class="fas fa-angle-right"></i>
-                </span>
-              </a>
+              
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- Area Chart Example-->
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-chart-area"></i>
-            Area Chart Example</div>
+            Humidity Chart </div>
           <div class="card-body">
             <canvas id="myAreaChart" width="100%" height="30"></canvas>
           </div>
@@ -742,7 +722,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="login">Logout</a>
         </div>
       </div>
     </div>

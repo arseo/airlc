@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   
- <title>SB Admin - Register</title>
+ <title>Air L&C - Register</title>
 
   <!-- Custom fonts for this template-->
   <link href="resources/templates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
