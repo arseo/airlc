@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   
-<title>SB Admin - Charts</title>
+<title>Air L&C - Charts</title>
 
   <!-- Custom fonts for this template-->
   <link href="resources/templates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -116,12 +116,12 @@
       <li class="nav-item active">
         <a class="nav-link" href="charts">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+          <span>Humidity Chart</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="tables">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>Outdoor Information</span></a>
       </li>
     </ul>
 
