@@ -1,60 +1,91 @@
 package com.airlc.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
-
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import com.airlc.dto.MemberVO;
+import com.airlc.service.MemberService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-/*	@Autowired
-	private Mapper mapper;*/
-	
-	/*원본임
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "index";
-	}
-	*/
-	//컨트롤러 없이 페이지 이동
+	@Inject
+	private MemberService service;
+
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	// @RequestMapping(value = "/", method = RequestMethod.GET)
 	@RequestMapping(value = "/{pageName}", method = RequestMethod.GET)
-	public String getSinglePage(@PathVariable("pageName")String pageName) {
-		return "/"+pageName;
+	public String getSinglePage(@PathVariable("pageName") String pageName, Locale locale, Model model)
+			throws Exception {
+		logger.info(pageName);
+		if (pageName.equals("home")) {
+			List<MemberVO> memberList = service.selectMember();
+			model.addAttribute("memberList", memberList);
+		}
+		return "/" + pageName;
 	}
-	
-/*	@RequestMapping(method=RequestMethod.POST, value="/list")
-	public String list(HttpServletRequest request, Model model) {
-		String memberId = request.getParameter("memberId");
-		model.addAttribute("memberId", mapper.memberId(memberId));
-		return "list";
-	}*/
-	
 }
+
+/*
+ * import java.util.List; import java.util.Locale;
+ * 
+ * import javax.inject.Inject;
+ * 
+ * import org.slf4j.Logger; import org.slf4j.LoggerFactory; import
+ * org.springframework.stereotype.Controller; import
+ * org.springframework.ui.Model; import
+ * org.springframework.web.bind.annotation.PathVariable;
+ * 
+ * import org.springframework.web.bind.annotation.RequestMapping; import
+ * org.springframework.web.bind.annotation.RequestMethod;
+ * 
+ * import com.airlc.dto.MemberVO; import com.airlc.service.MemberService;
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * @Controller public class HomeController {
+ * 
+ * private static final Logger logger =
+ * LoggerFactory.getLogger(HomeController.class);
+ * 
+ * @Inject private MemberService service;
+ * 
+ * 
+ * 
+ * @RequestMapping(value = "/{pageName}", method = RequestMethod.GET) public
+ * String getSinglePage(@PathVariable("pageName") String pageName) { return "/"
+ * + pageName; } public String home(Locale locale, Model model) throws Exception
+ * {
+ * 
+ * logger.info("home");
+ * 
+ * List<MemberVO> memberList = service.selectMember();
+ * 
+ * model.addAttribute("memberList", memberList);
+ * 
+ * return "home"; }
+ * 
+ * 
+ * }
+ */
