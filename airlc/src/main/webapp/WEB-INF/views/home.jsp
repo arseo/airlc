@@ -37,12 +37,12 @@
 }
 </style>
 <script type="text/javascript">
-	$( document ).ready(function() {
+	$(document).ready(function() {
 		/* $("#chart").click(function(){	// chart 클릭
 			location.href = 'charts';
 		}); */
-		
-	}); 
+
+	});
 </script>
 </head>
 
@@ -193,7 +193,10 @@
 								<div class="card-body-icon">
 									<i class="fas fa-fw fa-plus-square"></i>
 								</div>
-								<div class="mr-5">26</div>
+								<div class="mr-5">
+									<c:forEach items="${dustList2}" var="Latestdust">${Latestdust.ugm3}
+									</c:forEach>
+								</div>
 							</div>
 							<div class="card-footer clearfix z-1">
 								<span class="float-left"><i
@@ -254,56 +257,40 @@
 										<td>0.23%</td>
 										<td>2019/05/06</td>
 									</tr>
-									<c:forEach items="${memberList}" var="member">
-										<tr>
-											<td>Test</td>
-											<td>${member.id}</td>
-											<td>${member.pw}</td>
-											<td>${member.name}</td>
-											<td>2019/05/22</td>
-										</tr>
-									</c:forEach>
 									<tr>
-										<td>1Gyeonggi-do2</td>
+										<td>Busan</td>
 										<td>20°C</td>
 										<td>30%</td>
 										<td>0.23%</td>
-										<td>2019/05/06</td>
+										<td>2019/05/07</td>
 									</tr>
 									<tr>
-										<td>3Gyeonggi-do3</td>
+										<td>Daejeon</td>
 										<td>20°C</td>
 										<td>30%</td>
 										<td>0.23%</td>
-										<td>2019/05/06</td>
+										<td>2019/05/08</td>
 									</tr>
 									<tr>
-										<td>2Gyeonggi-do4</td>
+										<td>Daegu</td>
 										<td>20°C</td>
 										<td>30%</td>
 										<td>0.23%</td>
-										<td>2019/05/06</td>
+										<td>2019/05/09</td>
 									</tr>
 									<tr>
-										<td>Gyeonggi-do5</td>
+										<td>Jeollado</td>
 										<td>20°C</td>
 										<td>30%</td>
 										<td>0.23%</td>
-										<td>2019/05/06</td>
+										<td>2019/05/10</td>
 									</tr>
 									<tr>
-										<td>Gyeonggi-do6</td>
+										<td>Gyeongsang-do</td>
 										<td>20°C</td>
 										<td>30%</td>
 										<td>0.23%</td>
-										<td>2019/05/06</td>
-									</tr>
-									<tr>
-										<td>Gyeonggi-do7</td>
-										<td>20°C</td>
-										<td>30%</td>
-										<td>0.23%</td>
-										<td>2019/05/06</td>
+										<td>2019/05/11</td>
 									</tr>
 									<!-- <tr>
                     <td>Seoul</td>
