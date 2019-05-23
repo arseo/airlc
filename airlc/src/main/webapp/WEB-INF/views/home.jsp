@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,26 +7,21 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
 <title>Air L&C - Dashboard</title>
 <script src="resources/jquery-3.3.1.min.js" type="text/javascript"></script>
-<!-- Custom fonts for this template-->
-<link href="resources/templates/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
-<link href="resources/bootstrap4-toggle/bootstrap4-toggle.css"
-	rel="stylesheet">
+<link href="resources/bootstrap4-toggle/bootstrap4-toggle.css" rel="stylesheet">
 <script src="resources/bootstrap4-toggle/bootstrap4-toggle.js"></script>
+<!-- Custom fonts for this template-->
+<link href="resources/templates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <!-- Page level plugin CSS-->
-<link
-	href="resources/templates/vendor/datatables/dataTables.bootstrap4.css"
-	rel="stylesheet">
-
+<link href="resources/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 <!-- Custom styles for this template-->
 <link href="resources/templates/css/sb-admin.css" rel="stylesheet">
+
 <style>
 .btn-group-xs>.btn, .btn-xs {
 	padding: .35rem .5rem .25rem .5rem;
@@ -36,6 +30,7 @@
 	border-radius: .2rem;
 }
 </style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		/* $("#chart").click(function(){	// chart 클릭
@@ -61,42 +56,10 @@
 	<!-- Navbar Search -->
 	<form
 		class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-		<!-- <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div> -->
 	</form>
 
 	<!-- Navbar -->
 	<ul class="navbar-nav ml-auto ml-md-0">
-		<!-- <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-bell fa-fw"></i>
-          <span class="badge badge-danger">9+</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-envelope fa-fw"></i>
-          <span class="badge badge-danger">7</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> -->
 		<li class="nav-item dropdown no-arrow"><a
 			class="nav-link dropdown-toggle" href="#" id="userDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -104,9 +67,9 @@
 		</a>
 			<div class="dropdown-menu dropdown-menu-right"
 				aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="#">Settings</a> <a
+				<!-- <a class="dropdown-item" href="#">Settings</a> <a
 					class="dropdown-item" href="#">Activity Log</a>
-				<div class="dropdown-divider"></div>
+				<div class="dropdown-divider"></div> -->
 				<a class="dropdown-item" href="#" data-toggle="modal"
 					data-target="#logoutModal">Logout</a>
 			</div></li>
@@ -121,7 +84,7 @@
 			<li class="nav-item active"><a class="nav-link" href="home">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
-			<li class="nav-item dropdown"><a
+			<!-- <li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Pages</span>
@@ -135,11 +98,10 @@
 					<h6 class="dropdown-header">Other Pages:</h6>
 					<a class="dropdown-item" href="404">404 Page</a> <a
 						class="dropdown-item" href="blank">Blank Page</a>
-				</div></li>
+				</div></li> -->
 			<li class="nav-item">
 				<!-- <a id="chart" class="nav-link"> --> <a class="nav-link"
-				href="charts"> <i class="fas fa-fw fa-chart-area"></i> <span>Humidity
-						Chart</span></a>
+				href="charts"> <i class="fas fa-fw fa-chart-area"></i> <span>Chart</span></a>
 			</li>
 			<li class="nav-item"><a class="nav-link" href="tables"> <i
 					class="fas fa-fw fa-table"></i> <span>Outdoor Information</span></a></li>
@@ -195,7 +157,7 @@
 								</div>
 								<div class="mr-5">
 									<c:forEach items="${dustList2}" var="Latestdust">${Latestdust.ugm3}
-									</c:forEach>
+									</c:forEach> 
 								</div>
 							</div>
 							<div class="card-footer clearfix z-1">
@@ -208,18 +170,6 @@
 						</div>
 					</div>
 
-				</div>
-
-				<!-- Area Chart Example-->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-chart-area"></i> Humidity Chart
-					</div>
-					<div class="card-body">
-						<canvas id="myAreaChart" width="100%" height="30"></canvas>
-					</div>
-					<div class="card-footer small text-muted">Updated yesterday
-						at 11:59 PM</div>
 				</div>
 
 				<!-- DataTables Example -->
