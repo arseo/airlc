@@ -36,6 +36,10 @@ public class HomeController {
 	private HumService Hum_service;
 	@Inject
 	private DustService Dust_service2;
+	@Inject
+	private TempService Temp_service2;
+	@Inject
+	private HumService Hum_service2;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -65,6 +69,10 @@ public class HomeController {
 			model.addAttribute("humList", humList);
 			List<DustVO> dustList2 = Dust_service2.LatestDust();
 			model.addAttribute("dustList2", dustList2);
+			List<TempVO> tempList2 = Temp_service2.LatestTemp();
+			model.addAttribute("tempList2", tempList2);
+			List<HumVO> humList2 = Hum_service2.LatestHum();
+			model.addAttribute("humList2", humList2);
 		}
 		return "/"+pageName;
 	}

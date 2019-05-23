@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.airlc.dto.DustVO;
 import com.airlc.dto.TempVO;
  
 @Repository
@@ -23,5 +24,8 @@ public class TempDAOImpl implements TempDAO {
  
         return sqlSession.selectList(Namespace+".selectTemp");
     }
- 
+    public List<TempVO> LatestTemp() throws Exception {
+   	 
+        return sqlSession.selectList(Namespace+".LatestTemp");
+    }
 }

@@ -18,5 +18,8 @@
     <select id="selectHum" resultType="com.airlc.dto.HumVO">
         SELECT * FROM hum
     </select>
+    <select id="LatestHum" resultType="com.airlc.dto.HumVO">
+        SELECT * FROM hum order by date desc limit 1
+    </select>
     
 </mapper>

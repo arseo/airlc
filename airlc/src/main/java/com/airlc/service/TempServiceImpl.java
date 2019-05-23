@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
  
 import com.airlc.dao.TempDAO;
+import com.airlc.dto.DustVO;
 import com.airlc.dto.TempVO;
  
 @Service
@@ -21,5 +22,9 @@ public class TempServiceImpl implements TempService {
  
         return dao.selectTemp();
     }
+    @Override
+    public List<TempVO> LatestTemp() throws Exception {
  
+        return dao.LatestTemp();
+    }
 }

@@ -125,7 +125,10 @@
 								<div class="card-body-icon">
 									<i class="fas fa-fw fa-thermometer-half"></i>
 								</div>
-								<div class="mr-5">26</div>
+								<div class="mr-5">
+									<c:forEach items="${tempList2}" var="Latesttemp">${Latesttemp.temp}
+									</c:forEach>
+								</div>
 							</div>
 							<div class="card-footer clearfix z-1">
 								<span class="float-left"><i
@@ -140,7 +143,10 @@
 								<div class="card-body-icon">
 									<i class="fas fa-fw fa-thermometer-half"></i>
 								</div>
-								<div class="mr-5">26</div>
+								<div class="mr-5">
+									<c:forEach items="${humList2}" var="Latesthum">${Latesthum.hum}
+									</c:forEach>
+								</div>
 							</div>
 							<div class="card-footer clearfix z-1">
 								<span class="float-left"><i

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
  
 import com.airlc.dao.HumDAO;
+import com.airlc.dto.DustVO;
 import com.airlc.dto.HumVO;
  
 @Service
@@ -20,6 +21,11 @@ public class HumServiceImpl implements HumService {
     public List<HumVO> selectHum() throws Exception {
  
         return dao.selectHum();
+    }
+    @Override
+    public List<HumVO> LatestHum() throws Exception {
+ 
+        return dao.LatestHum();
     }
  
 }

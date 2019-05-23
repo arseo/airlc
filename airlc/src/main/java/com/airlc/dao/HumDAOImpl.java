@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.airlc.dto.DustVO;
 import com.airlc.dto.HumVO;
  
 @Repository
@@ -22,6 +23,10 @@ public class HumDAOImpl implements HumDAO {
     public List<HumVO> selectHum() throws Exception {
  
         return sqlSession.selectList(Namespace+".selectHum");
+    }
+    public List<HumVO> LatestHum() throws Exception {
+   	 
+        return sqlSession.selectList(Namespace+".LatestHum");
     }
  
 }
