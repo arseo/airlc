@@ -281,7 +281,7 @@
       <li class="nav-item">
         <a class="nav-link" href="tables">
           <i class="fas fa-fw fa-table"></i>
-          <span>Outdoor Information</span></a>
+          <span>Information table</span></a>
       </li>
     </ul>
 

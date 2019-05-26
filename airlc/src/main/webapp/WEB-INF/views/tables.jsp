@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,6 +33,70 @@
 <!-- Demo scripts for this page-->
 <script src="resources/templates/js/demo/datatables-demo.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	var ugm3 = new Array();
+    var dustDate = new Array();
+	<c:forEach items="${dustList}" var="dustList">
+		ugm3.push("${dustList.ugm3}");
+		dustDate.push("${dustList.date}");
+	</c:forEach>
+	
+	var temp = new Array();
+    <c:forEach items = "${tempList}" var = "tempList">
+    	temp.push("${tempList.temp}");
+	</c:forEach>
+	
+	var hum = new Array();
+    <c:forEach items = "${humList}" var = "humList">
+   		hum.push("${humList.hum}");
+	</c:forEach>
+	
+	var tabledata = new Array();
+	for (var i = 0; i < dustDate.length;i++) {
+		tabledata[i] = [dustDate[i], temp[i], hum[i], ugm3[i]];
+	} 
+	
+	// 내부 정보 데이터 테이블 만들기
+	/* $('#dataTableIn').DataTable( {
+	    data: tabledata
+	} ); */
+	$('#dataTableIn').dataTable().fnAddData(tabledata);
+	
+	
+	// 외부 정보 데이터 테이블 만들기
+	$('#dataTableOut').DataTable();
+	
+	// 테이블 갱신
+	$('#refresh').click(function(){
+		var ugm3 = new Array();
+	    var dustDate = new Array();
+		<c:forEach items="${dustList}" var="dustList">
+			ugm3.push("${dustList.ugm3}");
+			dustDate.push("${dustList.date}");
+		</c:forEach>
+		
+		var temp = new Array();
+	    <c:forEach items = "${tempList}" var = "tempList">
+	    	temp.push("${tempList.temp}");
+		</c:forEach>
+		
+		var hum = new Array();
+	    <c:forEach items = "${humList}" var = "humList">
+	   		hum.push("${humList.hum}");
+		</c:forEach>
+		
+		var tabledata = new Array();
+		for (var i = 0; i < dustDate.length;i++) {
+			tabledata[i] = [dustDate[i], temp[i], hum[i], ugm3[i]];
+		}
+		$('#dataTableIn').dataTable().fnClearTable(); 
+		$('#dataTableIn').dataTable().fnAddData(tabledata);
+	});
+
+});
+</script>
 </head>
 
 <body id="page-top">
@@ -79,7 +144,7 @@
 			<li class="nav-item"><a class="nav-link" href="charts"> <i
 					class="fas fa-fw fa-chart-area"></i> <span>Chart</span></a></li>
 			<li class="nav-item active"><a class="nav-link" href="tables">
-					<i class="fas fa-fw fa-table"></i> <span>Outdoor Information</span>
+					<i class="fas fa-fw fa-table"></i> <span>Information table</span>
 			</a></li>
 		</ul>
 
@@ -96,11 +161,51 @@
 				<!-- DataTables Example -->
 				<div class="card mb-3">
 					<div class="card-header">
-						<i class="fas fa-table"></i> Outdoor Information
+						<i class="fas fa-table"></i> Inside Information
+						<span class="float-right"> 
+							<button id="refresh" type="button" class="btn btn-labeled btn-info">
+	              				<i class="fas fa-sync-alt"></i>
+	              			</button>
+			            </span>
+			            </span>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%"
+							<table class="table table-bordered" id="dataTableIn" width="100%"
+								cellspacing="0">
+								<thead>
+									<tr>
+										<th>Date</th>
+										<th>Temperature</th>
+										<th>Humidity</th>
+										<th>Micro Dust</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Date</th>
+										<th>Temperature</th>
+										<th>Humidity</th>
+										<th>Micro Dust</th>
+									</tr>
+								</tfoot>
+								<tbody id = "dataTableInTBody">
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer small text-muted">Updated yesterday
+						at 11:59 PM</div>
+				</div>
+				
+				
+				<div class="card mb-3">
+					<div class="card-header">
+						<i class="fas fa-table"></i> Outside Information
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered" id="dataTableOut" width="100%"
 								cellspacing="0">
 								<thead>
 									<tr>

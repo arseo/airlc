@@ -82,6 +82,14 @@ public class HomeController {
 			List<HumVO> humList = Hum_service.selectHum();
 			model.addAttribute("humList", humList);
 		}
+		if (pageName.equals("tables")) {
+			List<DustVO> dustList = Dust_service.selectDust();
+			model.addAttribute("dustList", dustList);
+			List<TempVO> tempList = Temp_service.selectTemp();
+			model.addAttribute("tempList", tempList);
+			List<HumVO> humList = Hum_service.selectHum();
+			model.addAttribute("humList", humList);
+		}
 		return "/"+pageName;
 	}
 }

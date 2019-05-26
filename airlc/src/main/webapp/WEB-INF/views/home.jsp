@@ -24,10 +24,8 @@
 <!-- Bootstrap core JavaScript-->
 <script src="resources/templates/vendor/jquery/jquery.min.js"></script>
 <script src="resources/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 <!-- Core plugin JavaScript-->
 <script src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
-
 <!-- Page level plugin JavaScript-->
 <script src="resources/templates/vendor/chart.js/Chart.min.js"></script>
 <script src="resources/templates/vendor/datatables/jquery.dataTables.js"></script>
@@ -49,9 +47,65 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		/* $("#chart").click(function(){	// chart 클릭
-			location.href = 'charts';
-		}); */
+		
+		var ugm3 = new Array();
+	    var dustDate = new Array();
+		<c:forEach items="${dustList}" var="dustList">
+			ugm3.push("${dustList.ugm3}");
+			dustDate.push("${dustList.date}");
+		</c:forEach>
+		
+		var temp = new Array();
+	    <c:forEach items = "${tempList}" var = "tempList">
+	    	temp.push("${tempList.temp}");
+		</c:forEach>
+		
+		var hum = new Array();
+	    <c:forEach items = "${humList}" var = "humList">
+	   		hum.push("${humList.hum}");
+		</c:forEach>
+		
+		var tabledata = new Array();
+		for (var i = 0; i < dustDate.length;i++) {
+			tabledata[i] = [dustDate[i], temp[i], hum[i], ugm3[i]];
+		}
+		
+		// 내부 정보 데이터 테이블 만들기
+		/* $('#dataTableIn').DataTable( {
+		    data: tabledata
+		} ); */
+		$('#dataTableIn').dataTable().fnAddData(tabledata);
+		
+		
+		// 외부 정보 데이터 테이블 만들기
+		$('#dataTableOut').DataTable();
+		
+		// 테이블 갱신
+		$('#refresh').click(function(){
+			var ugm3 = new Array();
+		    var dustDate = new Array();
+			<c:forEach items="${dustList}" var="dustList">
+				ugm3.push("${dustList.ugm3}");
+				dustDate.push("${dustList.date}");
+			</c:forEach>
+			
+			var temp = new Array();
+		    <c:forEach items = "${tempList}" var = "tempList">
+		    	temp.push("${tempList.temp}");
+			</c:forEach>
+			
+			var hum = new Array();
+		    <c:forEach items = "${humList}" var = "humList">
+		   		hum.push("${humList.hum}");
+			</c:forEach>
+			
+			var tabledata = new Array();
+			for (var i = 0; i < dustDate.length;i++) {
+				tabledata[i] = [dustDate[i], temp[i], hum[i], ugm3[i]];
+			}
+			$('#dataTableIn').dataTable().fnClearTable(); 
+			$('#dataTableIn').dataTable().fnAddData(tabledata);
+		});
 
 	});
 </script>
@@ -120,7 +174,7 @@
 				href="charts"> <i class="fas fa-fw fa-chart-area"></i> <span>Chart</span></a>
 			</li>
 			<li class="nav-item"><a class="nav-link" href="tables"> <i
-					class="fas fa-fw fa-table"></i> <span>Outdoor Information</span></a></li>
+					class="fas fa-fw fa-table"></i> <span>Information table</span></a></li>
 		</ul>
 
 		<div id="content-wrapper">
@@ -197,11 +251,49 @@
 				<!-- DataTables Example -->
 				<div class="card mb-3">
 					<div class="card-header">
-						<i class="fas fa-table"></i> Outdoor Information
+						<i class="fas fa-table"></i> Inside Information
+						<span class="float-right"> 
+							<button id="refresh" type="button" class="btn btn-labeled btn-info">
+	              				<i class="fas fa-sync-alt"></i>
+	              			</button>
+			            </span>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%"
+							<table class="table table-bordered" id="dataTableIn" width="100%"
+								cellspacing="0">
+								<thead>
+									<tr>
+										<th>Date</th>									
+										<th>Temperature</th>
+										<th>Humidity</th>
+										<th>Micro Dust</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Date</th>
+										<th>Temperature</th>
+										<th>Humidity</th>
+										<th>Micro Dust</th>
+									</tr>
+								</tfoot>
+								<tbody id = "dataTableInTBody">
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer small text-muted">Updated yesterday
+						at 11:59 PM</div>
+				</div>
+
+				<div class="card mb-3">
+					<div class="card-header">
+						<i class="fas fa-table"></i> Outside Information
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered" id="dataTableOut" width="100%"
 								cellspacing="0">
 								<thead>
 									<tr>
@@ -264,20 +356,6 @@
 										<td>0.23%</td>
 										<td>2019/05/11</td>
 									</tr>
-									<!-- <tr>
-                    <td>Seoul</td>
-                    <td>19.3°C</td>
-                    <td>27%</td>
-                    <td>0.26%</td>
-                    <td>2019/05/06</td>
-                  </tr>  
-                  <tr>
-                    <td>Busan</td>
-                    <td>22.8°C</td>
-                    <td>27%</td>
-                    <td>0.15%</td>
-                    <td>2019/05/06</td>
-                  </tr>  -->
 								</tbody>
 							</table>
 						</div>
