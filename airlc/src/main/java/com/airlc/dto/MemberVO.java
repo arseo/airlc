@@ -4,7 +4,8 @@ public class MemberVO {
 	 
     private String id;
     private String pw;
-    private String name;
+    private String firstname;
+    private String lastname;
  
     public String getId() {
         return id;
@@ -23,11 +24,19 @@ public class MemberVO {
     }
  
     public String getName() {
-        return name;
+        return firstname;
     }
  
     public void setName(String name) {
-        this.name = name;
+        this.firstname = name;
     }
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
  
 }

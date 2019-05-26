@@ -16,7 +16,7 @@
     -->
     
     <select id="selectMember" resultType="com.airlc.dto.MemberVO">
-        SELECT ID, PW ,NAME FROM TEST
+        SELECT * FROM member
     </select>
     
 </mapper>

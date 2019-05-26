@@ -196,7 +196,7 @@
 									<i class="fas fa-fw fa-thermometer-half"></i>
 								</div>
 								<div class="mr-5">
-									<c:forEach items="${tempList2}" var="Latesttemp">${Latesttemp.temp}
+									<c:forEach items="${tempList2}" var="Latesttemp">${Latesttemp.temp} (℃)
 									</c:forEach>
 								</div>
 							</div>
@@ -214,7 +214,7 @@
 									<i class="fas fa-fw fa-thermometer-half"></i>
 								</div>
 								<div class="mr-5">
-									<c:forEach items="${humList2}" var="Latesthum">${Latesthum.hum}
+									<c:forEach items="${humList2}" var="Latesthum">${Latesthum.hum} (% RH)
 									</c:forEach>
 								</div>
 							</div>
@@ -232,7 +232,7 @@
 									<i class="fas fa-fw fa-plus-square"></i>
 								</div>
 								<div class="mr-5">
-									<c:forEach items="${dustList2}" var="Latestdust">${Latestdust.ugm3}
+									<c:forEach items="${dustList2}" var="Latestdust">${Latestdust.ugm3} (㎍/㎥)
 									</c:forEach> 
 								</div>
 							</div>

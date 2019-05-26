@@ -18,7 +18,9 @@ import com.airlc.service.DustService;
 import com.airlc.dto.TempVO;
 import com.airlc.service.TempService;
 import com.airlc.dto.HumVO;
+import com.airlc.dto.MemberVO;
 import com.airlc.service.HumService;
+import com.airlc.service.MemberService;
 
 /**
  * Handles requests for the application home page.
@@ -40,6 +42,8 @@ public class HomeController {
 	private TempService Temp_service2;
 	@Inject
 	private HumService Hum_service2;
+	@Inject
+	private MemberService Member_service;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -74,7 +78,7 @@ public class HomeController {
 			List<HumVO> humList2 = Hum_service2.LatestHum();
 			model.addAttribute("humList2", humList2);
 		}
-		if (pageName.equals("charts")) {
+		else if (pageName.equals("charts")) {
 			List<DustVO> dustList = Dust_service.selectDust();
 			model.addAttribute("dustList", dustList);
 			List<TempVO> tempList = Temp_service.selectTemp();
@@ -82,13 +86,17 @@ public class HomeController {
 			List<HumVO> humList = Hum_service.selectHum();
 			model.addAttribute("humList", humList);
 		}
-		if (pageName.equals("tables")) {
+		else if (pageName.equals("tables")) {
 			List<DustVO> dustList = Dust_service.selectDust();
 			model.addAttribute("dustList", dustList);
 			List<TempVO> tempList = Temp_service.selectTemp();
 			model.addAttribute("tempList", tempList);
 			List<HumVO> humList = Hum_service.selectHum();
 			model.addAttribute("humList", humList);
+		}
+		else if (pageName.equals("login")) {
+			List<MemberVO> memberList = Member_service.selectMember();
+			model.addAttribute("memberList", memberList);
 		}
 		return "/"+pageName;
 	}
