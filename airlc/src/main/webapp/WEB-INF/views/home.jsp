@@ -21,6 +21,22 @@
 <link href="resources/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 <!-- Custom styles for this template-->
 <link href="resources/templates/css/sb-admin.css" rel="stylesheet">
+<!-- Bootstrap core JavaScript-->
+<script src="resources/templates/vendor/jquery/jquery.min.js"></script>
+<script src="resources/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="resources/templates/vendor/chart.js/Chart.min.js"></script>
+<script src="resources/templates/vendor/datatables/jquery.dataTables.js"></script>
+<script src="resources/templates/vendor/datatables/dataTables.bootstrap4.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="resources/templates/js/sb-admin.min.js"></script>
+<!-- Demo scripts for this page-->
+<script src="resources/templates/js/demo/datatables-demo.js"></script>
+<script src="resources/templates/js/demo/chart-area-demo.js"></script>
 
 <style>
 .btn-group-xs>.btn, .btn-xs {
@@ -316,70 +332,5 @@
 		</div>
 	</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="resources/templates/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="resources/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script
-		src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Page level plugin JavaScript-->
-	<script src="resources/templates/vendor/chart.js/Chart.min.js"></script>
-	<script
-		src="resources/templates/vendor/datatables/jquery.dataTables.js"></script>
-	<script
-		src="resources/templates/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="resources/templates/js/sb-admin.min.js"></script>
-
-	<!-- Demo scripts for this page-->
-	<script src="resources/templates/js/demo/datatables-demo.js"></script>
-	<script src="resources/templates/js/demo/chart-area-demo.js"></script>
-
 </body>
 </html>
-<%--
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head>
-<title>Home</title>
-</head>
-<body>
-    <h1>Hello world!</h1>
- 
-    <table>
-        <thead>
-            <tr>
-            	<th>TEST</th>
-                <th>아이디</th>
-                <th>비밀번호</th>
-                <th>이름</th>
-                <th>Test</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${memberList}" var="member">
-                <tr>
-                	<td></td>
-                    <td>${member.id}</td>
-                    <td>${member.pw}</td>
-                    <td>${member.name}</td>
-                    <td></td>
-                </tr>
-            </c:forEach>
-            <tr>
-            <td>hi</td>
-            <td>hihi</td>
-            <td>hihihi</td>
-            </tr>
-        </tbody>
-    </table>
- 
- 
-</body>
-</html>--%>

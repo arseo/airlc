@@ -19,6 +19,18 @@
 <link href="resources/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 <!-- Custom styles for this template-->
 <link href="resources/templates/css/sb-admin.css" rel="stylesheet">
+<!-- Bootstrap core JavaScript-->
+<script src="resources/templates/vendor/jquery/jquery.min.js"></script>
+<script src="resources/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="resources/templates/vendor/datatables/jquery.dataTables.js"></script>
+<script src="resources/templates/vendor/datatables/dataTables.bootstrap4.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="resources/templates/js/sb-admin.min.js"></script>
+<!-- Demo scripts for this page-->
+<script src="resources/templates/js/demo/datatables-demo.js"></script>
 
 </head>
 
@@ -64,21 +76,6 @@
 			<li class="nav-item"><a class="nav-link" href="home"> <i
 					class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
-			<!-- <li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Pages</span>
-			</a>
-				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					<h6 class="dropdown-header">Login Screens:</h6>
-					<a class="dropdown-item" href="login">Login</a> <a
-						class="dropdown-item" href="register">Register</a> <a
-						class="dropdown-item" href="forgot-password">Forgot Password</a>
-					<div class="dropdown-divider"></div>
-					<h6 class="dropdown-header">Other Pages:</h6>
-					<a class="dropdown-item" href="404">404 Page</a> <a
-						class="dropdown-item" href="blank">Blank Page</a>
-				</div></li> -->
 			<li class="nav-item"><a class="nav-link" href="charts"> <i
 					class="fas fa-fw fa-chart-area"></i> <span>Chart</span></a></li>
 			<li class="nav-item active"><a class="nav-link" href="tables">
@@ -223,27 +220,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Bootstrap core JavaScript-->
-	<script src="resources/templates/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="resources/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script
-		src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Page level plugin JavaScript-->
-	<script
-		src="resources/templates/vendor/datatables/jquery.dataTables.js"></script>
-	<script
-		src="resources/templates/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="resources/templates/js/sb-admin.min.js"></script>
-
-	<!-- Demo scripts for this page-->
-	<script src="resources/templates/js/demo/datatables-demo.js"></script>
 
 </body>
 

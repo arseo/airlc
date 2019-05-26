@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,6 +20,19 @@
 <link href="resources/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 <!-- Custom styles for this template-->
 <link href="resources/templates/css/sb-admin.css" rel="stylesheet">
+<!-- Bootstrap core JavaScript-->
+<script src="resources/templates/vendor/jquery/jquery.min.js"></script>
+<script src="resources/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="resources/templates/vendor/chart.js/Chart.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="resources/templates/js/sb-admin.min.js"></script>
+<!-- Demo scripts for this page-->
+<script src="resources/templates/js/demo/chart-area-demo.js"></script>
+<script src="resources/templates/js/demo/chart-bar-demo.js"></script>
+<script src="resources/templates/js/demo/chart-pie-demo.js"></script>
 
 <style>
 .btn-group-xs>.btn, .btn-xs {
@@ -29,7 +43,41 @@
 }
 </style>
 <script type="text/javascript">
+	//$.ajaxSetup({ cache: false });
+	
 	$(document).ready(function() {
+		
+	    var ugm3 = new Array();
+	    var dustDate = new Array();
+	   
+	    <c:forEach items = "${dustList}" var = "dustList">
+			ugm3.push("${dustList.ugm3}");
+			dustDate.push("${dustList.date}");
+		</c:forEach>
+		console.log("ugm3 = ", ugm3);
+		console.log("dustDate = ", dustDate); 
+		
+		var temp = new Array();
+	    var tempDate = new Array();
+	   
+	    <c:forEach items = "${tempList}" var = "tempList">
+	    	temp.push("${tempList.temp}");
+	    	tempDate.push("${tempList.date}");
+		</c:forEach>
+		console.log("temp = ", temp);
+		console.log("tempDate = ", tempDate);
+		
+		var hum = new Array();
+	    var humDate = new Array();
+	   
+	    <c:forEach items = "${humList}" var = "humList">
+	   		hum.push("${humList.hum}");
+	   		humDate.push("${humList.date}");
+		</c:forEach>
+		console.log("hum = ", hum);
+		console.log("humDate = ", humDate);
+
+		
 		// Set new default font family and font color to mimic Bootstrap's default styling
 		Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 		Chart.defaults.global.defaultFontColor = '#292b2c';
@@ -39,9 +87,8 @@
 		var myChartTemp = new Chart(ctx1, {
 		  type: 'line',
 		  data: {
-		    labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
+		    labels: tempDate,
 		    datasets: [{
-		      label: "Sessions",
 		      lineTension: 0.3,
 		      backgroundColor: "rgba(2,117,216,0.2)",
 		      borderColor: "rgba(2,117,216,1)",
@@ -52,7 +99,7 @@
 		      pointHoverBackgroundColor: "rgba(2,117,216,1)",
 		      pointHitRadius: 50,
 		      pointBorderWidth: 2,
-		      data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451],
+		      data: temp,
 		    }],
 		  },
 		  options: {
@@ -71,7 +118,7 @@
 		      yAxes: [{
 		        ticks: {
 		          min: 0,
-		          max: 40000,
+		          max: 45,
 		          maxTicksLimit: 5
 		        },
 		        gridLines: {
@@ -88,20 +135,19 @@
 		var myChartHum = new Chart(ctx2, {
 		  type: 'line',
 		  data: {
-		    labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
+			  labels: humDate,
 		    datasets: [{
-		      label: "Sessions",
 		      lineTension: 0.3,
-		      backgroundColor: "rgba(2,117,216,0.2)",
-		      borderColor: "rgba(2,117,216,1)",
+		      backgroundColor: "rgba(255, 193, 7, 0.2)",
+		      borderColor: "rgba(255, 193, 7, 1)",
 		      pointRadius: 5,
-		      pointBackgroundColor: "rgba(2,117,216,1)",
+		      pointBackgroundColor: "rgba(255, 193, 7, 1)",
 		      pointBorderColor: "rgba(255,255,255,0.8)",
 		      pointHoverRadius: 5,
-		      pointHoverBackgroundColor: "rgba(2,117,216,1)",
+		      pointHoverBackgroundColor: "rgba(255, 193, 7, 1)",
 		      pointHitRadius: 50,
 		      pointBorderWidth: 2,
-		      data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451],
+		      data: hum
 		    }],
 		  },
 		  options: {
@@ -120,7 +166,7 @@
 		      yAxes: [{
 		        ticks: {
 		          min: 0,
-		          max: 40000,
+		          max: 45,
 		          maxTicksLimit: 5
 		        },
 		        gridLines: {
@@ -137,20 +183,19 @@
 		var myChartDust = new Chart(ctx, {
 		  type: 'line',
 		  data: {
-		    labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
+		    labels: dustDate,
 		    datasets: [{
-		      label: "Sessions",
 		      lineTension: 0.3,
-		      backgroundColor: "rgba(2,117,216,0.2)",
-		      borderColor: "rgba(2,117,216,1)",
+		      backgroundColor: "rgba(40, 167, 69,0.2)",
+		      borderColor: "rgba(40, 167, 69,1)",
 		      pointRadius: 5,
-		      pointBackgroundColor: "rgba(2,117,216,1)",
+		      pointBackgroundColor: "rgba(40, 167, 69,1)",
 		      pointBorderColor: "rgba(255,255,255,0.8)",
 		      pointHoverRadius: 5,
-		      pointHoverBackgroundColor: "rgba(2,117,216,1)",
+		      pointHoverBackgroundColor: "rgba(40, 167, 69,1)",
 		      pointHitRadius: 50,
 		      pointBorderWidth: 2,
-		      data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451],
+		      data: ugm3
 		    }],
 		  },
 		  options: {
@@ -169,7 +214,7 @@
 		      yAxes: [{
 		        ticks: {
 		          min: 0,
-		          max: 40000,
+		          max: 45,
 		          maxTicksLimit: 5
 		        },
 		        gridLines: {
@@ -228,22 +273,6 @@
           <span>Dashboard</span>
         </a>
       </li>
-<!--       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <h6 class="dropdown-header">Login Screens:</h6>
-          <a class="dropdown-item" href="login">Login</a>
-          <a class="dropdown-item" href="register">Register</a>
-          <a class="dropdown-item" href="forgot-password">Forgot Password</a>
-          <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item" href="404">404 Page</a>
-          <a class="dropdown-item" href="blank">Blank Page</a>
-        </div>
-      </li> -->
       <li class="nav-item active">
         <a class="nav-link" href="charts">
           <i class="fas fa-fw fa-chart-area"></i>
@@ -277,7 +306,7 @@
             <input type="checkbox" checked data-toggle="toggle" data-size="xs" data-onstyle="info">
             </span>
             </div>
-          <div class="card-body">
+          <div class="card-body"> 
             <canvas id="chartDust" width="100%" height="30"></canvas>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
@@ -302,32 +331,6 @@
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
-        
-        
-        <!-- <div class="row">
-          <div class="col-lg-8">
-            <div class="card mb-3">
-              <div class="card-header">
-                <i class="fas fa-chart-bar"></i>
-                Bar Chart Example</div>
-              <div class="card-body">
-                <canvas id="myBarChart" width="100%" height="50"></canvas>
-              </div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card mb-3">
-              <div class="card-header">
-                <i class="fas fa-chart-pie"></i>
-                Pie Chart Example</div>
-              <div class="card-body">
-                <canvas id="myPieChart" width="100%" height="100"></canvas>
-              </div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
-          </div>
-        </div> -->
 
         <p class="small text-center text-muted my-5">
           <em>More chart examples coming soon...</em>
@@ -375,23 +378,6 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="resources/templates/vendor/jquery/jquery.min.js"></script>
-  <script src="resources/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Page level plugin JavaScript-->
-  <script src="resources/templates/vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="resources/templates/js/sb-admin.min.js"></script>
-
-  <!-- Demo scripts for this page-->
-  <script src="resources/templates/js/demo/chart-area-demo.js"></script>
-  <script src="resources/templates/js/demo/chart-bar-demo.js"></script>
-  <script src="resources/templates/js/demo/chart-pie-demo.js"></script>
 
 </body>
 
