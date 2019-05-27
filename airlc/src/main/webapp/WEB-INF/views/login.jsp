@@ -25,10 +25,10 @@
   <script src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	<!__$(document).ready(function() {
 		
 		var result = new Array();
-		<c:forEach items="${memberList}" var="memberList">
+		<c:forEach items="${memberList}" var="login">
 			var json = new Object();
 			json.id = "${memberList.id}";
 			json.pw = "${memberList.pw}";

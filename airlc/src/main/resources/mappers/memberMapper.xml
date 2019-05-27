@@ -16,7 +16,7 @@
     -->
     
     <select id="selectMember" resultType="com.airlc.dto.MemberVO">
-        SELECT * FROM member
+        SELECT * FROM member where id=#{id} and pw = #{pw}
     </select>
     
 </mapper>

@@ -2,7 +2,6 @@ package com.airlc.controller;
 
 import java.util.List;
 import java.util.Locale;
-import java.text.SimpleDateFormat;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -18,17 +17,13 @@ import com.airlc.service.DustService;
 import com.airlc.dto.TempVO;
 import com.airlc.service.TempService;
 import com.airlc.dto.HumVO;
-import com.airlc.dto.MemberVO;
 import com.airlc.service.HumService;
-import com.airlc.service.MemberService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Inject
 	private DustService Dust_service;
@@ -42,28 +37,10 @@ public class HomeController {
 	private TempService Temp_service2;
 	@Inject
 	private HumService Hum_service2;
-	@Inject
-	private MemberService Member_service;
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	// @RequestMapping(value = "/", method = RequestMethod.GET)
-	/*@RequestMapping(value = "/{pageName}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/{pageName}", method = RequestMethod.GET)
 	public String getSinglePage(@PathVariable("pageName") String pageName, Locale locale, Model model)
 			throws Exception {
-		logger.info(pageName);
-		if (pageName.equals("home")) {
-			List<MemberVO> memberList = service.selectMember();
-			model.addAttribute("memberList", memberList);
-		}
-		else if (pageName.equals("tables")) {
-			List<MemberVO> memberList = service.selectMember();
-			model.addAttribute("memberList", memberList);
-		}
-		return "/" + pageName;*/
-	@RequestMapping(value = "/{pageName}", method = RequestMethod.GET)
-	public String getSinglePage(@PathVariable("pageName")String pageName, Locale locale, Model model) throws Exception{
 		if (pageName.equals("home")) {
 			List<DustVO> dustList = Dust_service.selectDust();
 			model.addAttribute("dustList", dustList);
@@ -77,8 +54,14 @@ public class HomeController {
 			model.addAttribute("tempList2", tempList2);
 			List<HumVO> humList2 = Hum_service2.LatestHum();
 			model.addAttribute("humList2", humList2);
-		}
-		else if (pageName.equals("charts")) {
+		} else if (pageName.equals("charts")) {
+			List<DustVO> dustList = Dust_service.selectDust();
+			model.addAttribute("dustList", dustList);
+			List<TempVO> tempList = Temp_service.selectTemp();
+			model.addAttribute("tempList", tempList);
+			List<HumVO> humList = Hum_service.selectHum();
+			model.addAttribute("humList", humList);
+		} else if (pageName.equals("tables")) {
 			List<DustVO> dustList = Dust_service.selectDust();
 			model.addAttribute("dustList", dustList);
 			List<TempVO> tempList = Temp_service.selectTemp();
@@ -86,18 +69,7 @@ public class HomeController {
 			List<HumVO> humList = Hum_service.selectHum();
 			model.addAttribute("humList", humList);
 		}
-		else if (pageName.equals("tables")) {
-			List<DustVO> dustList = Dust_service.selectDust();
-			model.addAttribute("dustList", dustList);
-			List<TempVO> tempList = Temp_service.selectTemp();
-			model.addAttribute("tempList", tempList);
-			List<HumVO> humList = Hum_service.selectHum();
-			model.addAttribute("humList", humList);
-		}
-		else if (pageName.equals("login")) {
-			List<MemberVO> memberList = Member_service.selectMember();
-			model.addAttribute("memberList", memberList);
-		}
-		return "/"+pageName;
+		return "/" + pageName;
 	}
+	
 }

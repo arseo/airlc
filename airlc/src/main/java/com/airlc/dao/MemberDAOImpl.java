@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.airlc.dto.HumVO;
 import com.airlc.dto.MemberVO;
  
 @Repository
@@ -18,9 +19,9 @@ public class MemberDAOImpl implements MemberDAO {
     private static final String Namespace = "com.airlc.mapper.memberMapper";
     
     @Override
-    public List<MemberVO> selectMember() throws Exception {
- 
-        return sqlSession.selectList(Namespace+".selectMember");
-    }
+	public MemberVO login(MemberVO dto){
+		// Mapper의 namespace명.id : 자신에게 맞게 작성해서 넣는다.
+		return sqlSession.selectOne(Namespace, dto);
+	}
  
 }

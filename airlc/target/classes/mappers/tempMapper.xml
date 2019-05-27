@@ -18,5 +18,8 @@
     <select id="selectTemp" resultType="com.airlc.dto.TempVO">
         SELECT * FROM temp
     </select>
+    <select id="LatestTemp" resultType="com.airlc.dto.TempVO">
+        SELECT * FROM temp order by date desc limit 1
+    </select>
     
 </mapper>
