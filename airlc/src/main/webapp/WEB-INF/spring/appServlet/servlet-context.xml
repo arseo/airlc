@@ -23,12 +23,13 @@
 	<!-- Interceptor 설정 -->
 	<interceptors>
 		<interceptor>
-			<mapping path="/home"/>
+			<mapping path="/index"/>
+			<!-- <mapping path="/home"/>
 			<mapping path="/charts"/>
 			<mapping path="/register"/>
 			<mapping path="/tables"/>
 			<mapping path="/index.jsp"/>
-			<mapping path="/blank"/>
+			<mapping path="/blank"/> -->
 			<beans:bean class="com.airlc.interceptor.AuthenticationInterceptor"/>
 		</interceptor>
 	</interceptors>

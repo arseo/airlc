@@ -25,13 +25,13 @@
   <script src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <script type="text/javascript">
-	<!__$(document).ready(function() {
+	$(document).ready(function() {
 		
 		var result = new Array();
-		<c:forEach items="${memberList}" var="login">
+		<c:forEach items="${vo}" var="login">
 			var json = new Object();
-			json.id = "${memberList.id}";
-			json.pw = "${memberList.pw}";
+			json.id = "${vo.id}";
+			json.pw = "${vo.pw}";
 			result.push(json);
 			console.log("result: ", result);
 		</c:forEach>

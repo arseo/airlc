@@ -239,7 +239,7 @@
 							<div class="card-footer clearfix z-1">
 								<span class="float-left"><i
 									class="fas fa-fw fa-plus-square"></i>Micro Dust</span> <span
-									class="float-right"> <input type="checkbox" checked
+									class="float-right"> <input type="checkbox" <c:choose><c:when test = "${msg.equals('Off')}">checked </c:when><c:when test = "${msg.equals('On')}"> unchecked </c:when></c:choose>
 									data-toggle="toggle" data-size="xs" data-onstyle="info">
 								</span>
 							</div>
