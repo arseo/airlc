@@ -1,32 +1,242 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
   
-<title>SB Admin - Charts</title>
+<title>Air L&C - Charts</title>
+<script src="resources/jquery-3.3.1.min.js" type="text/javascript"></script>
+<link href="resources/bootstrap4-toggle/bootstrap4-toggle.css" rel="stylesheet">
+<script src="resources/bootstrap4-toggle/bootstrap4-toggle.js"></script>
+<!-- Custom fonts for this template-->
+<link href="resources/templates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<!-- Page level plugin CSS-->
+<link href="resources/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+<!-- Custom styles for this template-->
+<link href="resources/templates/css/sb-admin.css" rel="stylesheet">
+<!-- Bootstrap core JavaScript-->
+<script src="resources/templates/vendor/jquery/jquery.min.js"></script>
+<script src="resources/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="resources/templates/vendor/chart.js/Chart.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="resources/templates/js/sb-admin.min.js"></script>
+<!-- Demo scripts for this page-->
+<script src="resources/templates/js/demo/chart-area-demo.js"></script>
+<script src="resources/templates/js/demo/chart-bar-demo.js"></script>
+<script src="resources/templates/js/demo/chart-pie-demo.js"></script>
 
-  <!-- Custom fonts for this template-->
-  <link href="resources/templates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<style>
+.btn-group-xs>.btn, .btn-xs {
+	padding: .35rem .5rem .25rem .5rem;
+	font-size: .875rem;
+	line-height: .5;
+	border-radius: .2rem;
+}
+</style>
+<script type="text/javascript">
+	//$.ajaxSetup({ cache: false });
+	
+	$(document).ready(function() {
+		
+	    var ugm3 = new Array();
+	    var dustDate = new Array();
+	   
+	    <c:forEach items = "${dustList}" var = "dustList">
+			ugm3.push("${dustList.ugm3}");
+			dustDate.push("${dustList.date}");
+		</c:forEach>
+		console.log("ugm3 = ", ugm3);
+		console.log("dustDate = ", dustDate); 
+		
+		var temp = new Array();
+	    var tempDate = new Array();
+	   
+	    <c:forEach items = "${tempList}" var = "tempList">
+	    	temp.push("${tempList.temp}");
+	    	tempDate.push("${tempList.date}");
+		</c:forEach>
+		console.log("temp = ", temp);
+		console.log("tempDate = ", tempDate);
+		
+		var hum = new Array();
+	    var humDate = new Array();
+	   
+	    <c:forEach items = "${humList}" var = "humList">
+	   		hum.push("${humList.hum}");
+	   		humDate.push("${humList.date}");
+		</c:forEach>
+		console.log("hum = ", hum);
+		console.log("humDate = ", humDate);
 
-  <!-- Page level plugin CSS-->
-  <link href="resources/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+		
+		// Set new default font family and font color to mimic Bootstrap's default styling
+		Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+		Chart.defaults.global.defaultFontColor = '#292b2c';
 
-  <!-- Custom styles for this template-->
-  <link href="resources/templates/css/sb-admin.css" rel="stylesheet">
+		// Area Chart Example
+		var ctx1 = document.getElementById("chartTemp");
+		var myChartTemp = new Chart(ctx1, {
+		  type: 'line',
+		  data: {
+		    labels: tempDate,
+		    datasets: [{
+		      lineTension: 0.3,
+		      backgroundColor: "rgba(2,117,216,0.2)",
+		      borderColor: "rgba(2,117,216,1)",
+		      pointRadius: 5,
+		      pointBackgroundColor: "rgba(2,117,216,1)",
+		      pointBorderColor: "rgba(255,255,255,0.8)",
+		      pointHoverRadius: 5,
+		      pointHoverBackgroundColor: "rgba(2,117,216,1)",
+		      pointHitRadius: 50,
+		      pointBorderWidth: 2,
+		      data: temp,
+		    }],
+		  },
+		  options: {
+		    scales: {
+		      xAxes: [{
+		        time: {
+		          unit: 'date'
+		        },
+		        gridLines: {
+		          display: false
+		        },
+		        ticks: {
+		          maxTicksLimit: 7
+		        }
+		      }],
+		      yAxes: [{
+		        ticks: {
+		          min: 0,
+		          max: 45,
+		          maxTicksLimit: 5
+		        },
+		        gridLines: {
+		          color: "rgba(0, 0, 0, .125)",
+		        }
+		      }],
+		    },
+		    legend: {
+		      display: false
+		    }
+		  }
+		});
+		var ctx2 = document.getElementById("chartHum");
+		var myChartHum = new Chart(ctx2, {
+		  type: 'line',
+		  data: {
+			  labels: humDate,
+		    datasets: [{
+		      lineTension: 0.3,
+		      backgroundColor: "rgba(255, 193, 7, 0.2)",
+		      borderColor: "rgba(255, 193, 7, 1)",
+		      pointRadius: 5,
+		      pointBackgroundColor: "rgba(255, 193, 7, 1)",
+		      pointBorderColor: "rgba(255,255,255,0.8)",
+		      pointHoverRadius: 5,
+		      pointHoverBackgroundColor: "rgba(255, 193, 7, 1)",
+		      pointHitRadius: 50,
+		      pointBorderWidth: 2,
+		      data: hum
+		    }],
+		  },
+		  options: {
+		    scales: {
+		      xAxes: [{
+		        time: {
+		          unit: 'date'
+		        },
+		        gridLines: {
+		          display: false
+		        },
+		        ticks: {
+		          maxTicksLimit: 7
+		        }
+		      }],
+		      yAxes: [{
+		        ticks: {
+		          min: 0,
+		          max: 45,
+		          maxTicksLimit: 5
+		        },
+		        gridLines: {
+		          color: "rgba(0, 0, 0, .125)",
+		        }
+		      }],
+		    },
+		    legend: {
+		      display: false
+		    }
+		  }
+		});
+		var ctx = document.getElementById("chartDust");
+		var myChartDust = new Chart(ctx, {
+		  type: 'line',
+		  data: {
+		    labels: dustDate,
+		    datasets: [{
+		      lineTension: 0.3,
+		      backgroundColor: "rgba(40, 167, 69,0.2)",
+		      borderColor: "rgba(40, 167, 69,1)",
+		      pointRadius: 5,
+		      pointBackgroundColor: "rgba(40, 167, 69,1)",
+		      pointBorderColor: "rgba(255,255,255,0.8)",
+		      pointHoverRadius: 5,
+		      pointHoverBackgroundColor: "rgba(40, 167, 69,1)",
+		      pointHitRadius: 50,
+		      pointBorderWidth: 2,
+		      data: ugm3
+		    }],
+		  },
+		  options: {
+		    scales: {
+		      xAxes: [{
+		        time: {
+		          unit: 'date'
+		        },
+		        gridLines: {
+		          display: false
+		        },
+		        ticks: {
+		          maxTicksLimit: 7
+		        }
+		      }],
+		      yAxes: [{
+		        ticks: {
+		          min: 0,
+		          max: 45,
+		          maxTicksLimit: 5
+		        },
+		        gridLines: {
+		          color: "rgba(0, 0, 0, .125)",
+		        }
+		      }],
+		    },
+		    legend: {
+		      display: false
+		    }
+		  }
+		});
 
+	});
+</script>
 </head>
 
 <body id="page-top">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="home">Start Bootstrap</a>
+    <a class="navbar-brand mr-1" href="home">Air L&C</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -34,50 +244,18 @@
 
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
     </form>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-bell fa-fw"></i>
-          <span class="badge badge-danger">9+</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-envelope fa-fw"></i>
-          <span class="badge badge-danger">7</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Settings</a>
+          <!-- <a class="dropdown-item" href="#">Settings</a>
           <a class="dropdown-item" href="#">Activity Log</a>
-          <div class="dropdown-divider"></div>
+          <div class="dropdown-divider"></div> -->
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
         </div>
       </li>
@@ -95,31 +273,15 @@
           <span>Dashboard</span>
         </a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <h6 class="dropdown-header">Login Screens:</h6>
-          <a class="dropdown-item" href="login">Login</a>
-          <a class="dropdown-item" href="register">Register</a>
-          <a class="dropdown-item" href="forgot-password">Forgot Password</a>
-          <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item" href="404">404 Page</a>
-          <a class="dropdown-item" href="blank">Blank Page</a>
-        </div>
-      </li>
       <li class="nav-item active">
         <a class="nav-link" href="charts">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+          <span>Chart</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="tables">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>Information table</span></a>
       </li>
     </ul>
 
@@ -137,38 +299,37 @@
 
         <!-- Area Chart Example-->
         <div class="card mb-3">
+          <div class="card-header"> <span>
+            <i class="fas fa-chart-area"></i>
+            Micro Dust Chart </span>
+            <span class="float-right"> 
+            <input type="checkbox" checked data-toggle="toggle" data-size="xs" data-onstyle="info">
+            </span>
+            </div>
+          <div class="card-body"> 
+            <canvas id="chartDust" width="100%" height="30"></canvas>
+          </div>
+          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+        
+        <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-chart-area"></i>
-            Area Chart Example</div>
+            Temperature Chart </div>
           <div class="card-body">
-            <canvas id="myAreaChart" width="100%" height="30"></canvas>
+            <canvas id="chartTemp" width="100%" height="30"></canvas>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
 
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="card mb-3">
-              <div class="card-header">
-                <i class="fas fa-chart-bar"></i>
-                Bar Chart Example</div>
-              <div class="card-body">
-                <canvas id="myBarChart" width="100%" height="50"></canvas>
-              </div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
+		<div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            Humidity Chart </div>
+          <div class="card-body">
+            <canvas id="chartHum" width="100%" height="30"></canvas>
           </div>
-          <div class="col-lg-4">
-            <div class="card mb-3">
-              <div class="card-header">
-                <i class="fas fa-chart-pie"></i>
-                Pie Chart Example</div>
-              <div class="card-body">
-                <canvas id="myPieChart" width="100%" height="100"></canvas>
-              </div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
-          </div>
+          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
 
         <p class="small text-center text-muted my-5">
@@ -217,23 +378,6 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="resources/templates/vendor/jquery/jquery.min.js"></script>
-  <script src="resources/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Page level plugin JavaScript-->
-  <script src="resources/templates/vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="resources/templates/js/sb-admin.min.js"></script>
-
-  <!-- Demo scripts for this page-->
-  <script src="resources/templates/js/demo/chart-area-demo.js"></script>
-  <script src="resources/templates/js/demo/chart-bar-demo.js"></script>
-  <script src="resources/templates/js/demo/chart-pie-demo.js"></script>
 
 </body>
 
