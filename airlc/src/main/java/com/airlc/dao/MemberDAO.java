@@ -5,6 +5,6 @@ import java.util.List;
 import com.airlc.dto.MemberVO;
  
 public interface MemberDAO {
-    
-    public List<MemberVO> selectMember() throws Exception;
+	
+	public MemberVO login(MemberVO dto);
 }

@@ -27,27 +27,28 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-		var result = new Array();
-		<c:forEach items="${memberList}" var="memberList">
-			var json = new Object();
-			json.id = "${memberList.id}";
-			json.pw = "${memberList.pw}";
-			result.push(json);
-			console.log("result: ", result);
-		</c:forEach>
-		
 		$('#loginBtn').click(function(){
-			var id = $('#inputEmail').val();
-			var pw = $('#inputPassword').val();
+			/* var id = $('#inputEmail').val();
+			var pw = $('#inputPassword').val(); */
 			
-			for (var i = 0; i < result.length; i++) {
-				if (result[i].id == id) {
-					if (result[i].pw == pw) {
-						console.log("성공");
-						location.href = 'home';
-					}
+			$.ajax({
+                type : "post", //post로 요청
+                url : "loginProcess", //login url로 요청
+                data : { "id" : $('#inputEmail').val(), "pw" : $('#inputPassword').val()} // json데이터를 전성
+            });
+			
+			/* <c:forEach items="${vo}" var="vo">
+				var voId = "${vo.id}";
+				var voPw = "${vo.pw}";
+			</c:forEach>
+			console.log("voId : " + voId);
+			console.log("voPw : " + voPw); */
+			
+			/* if (voId == id) {
+				if (voPw == pw) {
+					location.href="home";
 				}
-			}
+			} */
 		});
 		
 	});

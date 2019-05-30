@@ -15,8 +15,11 @@
         이렇게 해야 한다.
     -->
     
-    <select id="selectMember" resultType="com.airlc.dto.MemberVO">
-        SELECT * FROM member
+    <select id="selectMember" parameterType="com.airlc.dto.MemberVO" 
+    resultType="com.airlc.dto.MemberVO">
+        SELECT * 
+        FROM member 
+        where id=#{id} and pw = #{pw}
     </select>
     
 </mapper>
