@@ -30,11 +30,17 @@
 		$('#loginBtn').click(function(){
 			/* var id = $('#inputEmail').val();
 			var pw = $('#inputPassword').val(); */
-			
+			var formData = {
+					"id" : $('#inputEmail').val(),
+					"pw" : $('#inputPassword').val()
+			};
 			$.ajax({
                 type : "post", //post로 요청
                 url : "loginProcess", //login url로 요청
-                data : { "id" : $('#inputEmail').val(), "pw" : $('#inputPassword').val()} // json데이터를 전성
+                data : formData, // json데이터를 전성
+            }).done(function(data){
+            	alter(data);
+            	console.log(data);
             });
 			
 			/* <c:forEach items="${vo}" var="vo">
@@ -84,7 +90,7 @@
               </label>
             </div>
           </div>
-          <button id="loginBtn" class="btn btn-primary btn-block" >Login</button>
+          <button type="button" id="loginBtn" class="btn btn-primary btn-block" >Login</button>
         </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="register">Register an Account</a>
