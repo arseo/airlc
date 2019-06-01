@@ -24,35 +24,6 @@
   <!-- Core plugin JavaScript-->
   <script src="resources/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		
-		var result = new Array();
-		<c:forEach items="${vo}" var="login">
-			var json = new Object();
-			json.id = "${vo.id}";
-			json.pw = "${vo.pw}";
-			result.push(json);
-			console.log("result: ", result);
-		</c:forEach>
-		
-		$('#loginBtn').click(function(){
-			var id = $('#inputEmail').val();
-			var pw = $('#inputPassword').val();
-			
-			for (var i = 0; i < result.length; i++) {
-				if (result[i].id == id) {
-					if (result[i].pw == pw) {
-						console.log("성공");
-						location.href = 'home';
-					}
-				}
-			}
-		});
-		
-	});
-</script>
-
 
 </head>
 
@@ -62,33 +33,23 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form>
+      
+      <form action="/airlc/loginProcess" method="post">
           <div class="form-group">
             <div class="form-label-group">
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+              <input type="email" name="id" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
               <label for="inputEmail">Email address</label>
             </div>
           </div>
           <div class="form-group">
             <div class="form-label-group">
-              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+              <input type="password" name="pw" id="inputPassword" class="form-control" placeholder="Password" required="required">
               <label for="inputPassword">Password</label>
             </div>
           </div>
-          <div class="form-group">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me">
-                Remember Password
-              </label>
-            </div>
-          </div>
-          <button id="loginBtn" class="btn btn-primary btn-block" >Login</button>
+          <button type="submit" id="loginBtn" class="btn btn-primary btn-block" >Login</button>
         </form>
-        <div class="text-center">
-          <a class="d-block small mt-3" href="register">Register an Account</a>
-          <a class="d-block small" href="forgot-password">Forgot Password?</a>
-        </div>
+        
       </div>
     </div>
   </div>

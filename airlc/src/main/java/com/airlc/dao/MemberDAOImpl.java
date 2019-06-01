@@ -21,7 +21,14 @@ public class MemberDAOImpl implements MemberDAO {
     @Override
 	public MemberVO login(MemberVO dto){
 		// Mapper의 namespace명.id : 자신에게 맞게 작성해서 넣는다.
-		return sqlSession.selectOne(Namespace, dto);
+    	try {
+    		/*System.out.println(dto.getId());
+    		System.out.println(dto.getPw());*/
+    		dto = sqlSession.selectOne(Namespace+".selectMember", dto);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		return dto;
 	}
  
 }

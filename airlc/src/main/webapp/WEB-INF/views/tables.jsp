@@ -36,6 +36,11 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	var d = new Date();
+    var currentDate = d.getFullYear() + "." + ( d.getMonth() + 1 ) + "." + d.getDate();
+    var currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    $('#time').text("Update " + currentDate + " "  + currentTime);
+	
 	var ugm3 = new Array();
     var dustDate = new Array();
 	<c:forEach items="${dustList}" var="dustList">
@@ -93,6 +98,11 @@ $(document).ready(function() {
 		}
 		$('#dataTableIn').dataTable().fnClearTable(); 
 		$('#dataTableIn').dataTable().fnAddData(tabledata);
+		
+		var d = new Date();
+        var currentDate = d.getFullYear() + "." + ( d.getMonth() + 1 ) + "." + d.getDate();
+        var currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+        $('#time').text("Update " + currentDate + " "  + currentTime);
 	});
 
 });
@@ -194,8 +204,7 @@ $(document).ready(function() {
 							</table>
 						</div>
 					</div>
-					<div class="card-footer small text-muted">Updated yesterday
-						at 11:59 PM</div>
+					<div id="time" class="card-footer small text-muted"></div>
 				</div>
 				
 				
