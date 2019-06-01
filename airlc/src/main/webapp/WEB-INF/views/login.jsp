@@ -31,14 +31,14 @@
 
   <div class="container">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header">Login</div>
+      <div class="card-header">Air L&C - Login</div>
       <div class="card-body">
       
       <form action="/airlc/loginProcess" method="post">
           <div class="form-group">
             <div class="form-label-group">
-              <input type="email" name="id" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-              <label for="inputEmail">Email address</label>
+              <input type="text" name="id" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+              <label for="inputEmail">ID</label>
             </div>
           </div>
           <div class="form-group">

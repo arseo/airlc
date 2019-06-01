@@ -377,7 +377,7 @@ input:checked + .slider:before {
             <span class="float-right"> 
             <label class="switch">
                        <input id="tg" type="checkbox" 
-                                 <c:if test = "${Gpio_service.equals('Off')}">checked="checked" </c:if>
+                                 <c:if test = "${Gpio_service.equals('LOW')}">checked="checked" </c:if>
                        >
                        <span class="slider round" ></span>
                      </label>

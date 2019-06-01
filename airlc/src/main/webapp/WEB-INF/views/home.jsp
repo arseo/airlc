@@ -268,23 +268,8 @@ input:checked + .slider:before {
          <li class="nav-item active"><a class="nav-link" href="home">
                <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
          </a></li>
-         <!-- <li class="nav-item dropdown"><a
-            class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
-            role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Pages</span>
-         </a>
-            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-               <h6 class="dropdown-header">Login Screens:</h6>
-               <a class="dropdown-item" href="login">Login</a> <a
-                  class="dropdown-item" href="register">Register</a> <a
-                  class="dropdown-item" href="forgot-password">Forgot Password</a>
-               <div class="dropdown-divider"></div>
-               <h6 class="dropdown-header">Other Pages:</h6>
-               <a class="dropdown-item" href="404">404 Page</a> <a
-                  class="dropdown-item" href="blank">Blank Page</a>
-            </div></li> -->
          <li class="nav-item">
-            <!-- <a id="chart" class="nav-link"> --> <a class="nav-link"
+            <a class="nav-link"
             href="charts"> <i class="fas fa-fw fa-chart-area"></i> <span>Chart</span></a>
          </li>
          <li class="nav-item"><a class="nav-link" href="tables"> <i
@@ -352,11 +337,11 @@ input:checked + .slider:before {
                      </div>
                      <div class="card-footer clearfix z-1">
                         <span class="float-left"><i
-                           class="fas fa-fw fa-plus-square"></i>${Gpio_service.equals("HIGH")}</span> 
+                           class="fas fa-fw fa-plus-square"></i>Micro Dust</span> 
                            <span class="float-right">
                            <label class="switch">
                        <input id="tg" type="checkbox" 
-                                 <c:if test = "${Gpio_service.equals('Off')}">checked="checked" </c:if>
+                                 <c:if test = "${Gpio_service.equals('LOW')}">checked="checked" </c:if>
                        >
                        <span class="slider round" ></span>
                      </label> 
@@ -486,7 +471,7 @@ input:checked + .slider:before {
             <div class="modal-footer">
                <button class="btn btn-secondary" type="button"
                   data-dismiss="modal">Cancel</button>
-               <a class="btn btn-primary" href="login">Logout</a>
+               <a class="btn btn-primary" href="logout">Logout</a>
             </div>
          </div>
       </div>
