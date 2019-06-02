@@ -7,6 +7,7 @@ import com.airlc.dto.DustVO;
  
 public interface DustService {
     
-    public List<DustVO> selectDust() throws Exception;
+	public List<DustVO> selectDust() throws Exception;
     public List<DustVO> LatestDust() throws Exception;
+    public List<DustVO> ApiDust() throws Exception;
 }

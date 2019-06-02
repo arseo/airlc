@@ -29,7 +29,6 @@
 			<mapping path="/register"/>
 			<mapping path="/tables"/>
 			<mapping path="/blank"/>
-			<mapping path="/student1"/>
 			<beans:bean class="com.airlc.interceptor.AuthenticationInterceptor"/>
 		</interceptor>
 	</interceptors>

@@ -26,5 +26,10 @@ public class DustServiceImpl implements DustService {
  
         return dao.LatestDust();
     }
+    @Override
+    public List<DustVO> ApiDust() throws Exception {
+ 
+        return dao.ApiDust();
+    }
  
 }

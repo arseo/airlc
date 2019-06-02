@@ -24,8 +24,12 @@ public class DustDAOImpl implements DustDAO {
         return sqlSession.selectList(Namespace+".selectDust");
     }
     public List<DustVO> LatestDust() throws Exception {
-    	 
+        
         return sqlSession.selectList(Namespace+".LatestDust");
+    }
+    public List<DustVO> ApiDust() throws Exception {
+
+        return sqlSession.selectList(Namespace+".ApiDust");
     }
  
 }

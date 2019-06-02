@@ -107,6 +107,11 @@ input:checked + .slider:before {
 	
 	$(document).ready(function() {
 		
+		var d = new Date();
+	       var currentDate = d.getFullYear() + "." + ( d.getMonth() + 1 ) + "." + d.getDate();
+	       var currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+	       $('.time').text("Update " + currentDate + " "  + currentTime);
+	       
 	    var ugm3 = new Array();
 	    var dustDate = new Array();
 	   
@@ -178,7 +183,7 @@ input:checked + .slider:before {
 		      yAxes: [{
 		        ticks: {
 		          min: 0,
-		          max: 45,
+		          max: 50,
 		          maxTicksLimit: 5
 		        },
 		        gridLines: {
@@ -225,8 +230,8 @@ input:checked + .slider:before {
 		      }],
 		      yAxes: [{
 		        ticks: {
-		          min: 0,
-		          max: 45,
+		          min: 10,
+		          max: 60,
 		          maxTicksLimit: 5
 		        },
 		        gridLines: {
@@ -274,8 +279,8 @@ input:checked + .slider:before {
 		      yAxes: [{
 		        ticks: {
 		          min: 0,
-		          max: 45,
-		          maxTicksLimit: 5
+		          max: 70,
+		          maxTicksLimit: 7
 		        },
 		        gridLines: {
 		          color: "rgba(0, 0, 0, .125)",
@@ -386,7 +391,7 @@ input:checked + .slider:before {
           <div class="card-body"> 
             <canvas id="chartDust" width="100%" height="30"></canvas>
           </div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          <div id="time" class="time card-footer small text-muted"></div>
         </div>
         
         <div class="card mb-3">
@@ -396,7 +401,7 @@ input:checked + .slider:before {
           <div class="card-body">
             <canvas id="chartTemp" width="100%" height="30"></canvas>
           </div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          <div id="time" class="time card-footer small text-muted"></div>
         </div>
 
 		<div class="card mb-3">
@@ -406,7 +411,7 @@ input:checked + .slider:before {
           <div class="card-body">
             <canvas id="chartHum" width="100%" height="30"></canvas>
           </div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          <div id="time" class="time card-footer small text-muted"></div>
         </div>
 
         <p class="small text-center text-muted my-5">

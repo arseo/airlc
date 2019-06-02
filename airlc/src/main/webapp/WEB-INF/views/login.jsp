@@ -37,14 +37,12 @@
       <form action="/airlc/loginProcess" method="post">
           <div class="form-group">
             <div class="form-label-group">
-              <input type="text" name="id" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-              <label for="inputEmail">ID</label>
-            </div>
+              <input type="text" name="id" class="form-control" required="required" autofocus="autofocus" placeholder="ID">
+              </div>
           </div>
           <div class="form-group">
             <div class="form-label-group">
-              <input type="password" name="pw" id="inputPassword" class="form-control" placeholder="Password" required="required">
-              <label for="inputPassword">Password</label>
+              <input type="password" name="pw" class="form-control" required="required" placeholder="Password">
             </div>
           </div>
           <button type="submit" id="loginBtn" class="btn btn-primary btn-block" >Login</button>

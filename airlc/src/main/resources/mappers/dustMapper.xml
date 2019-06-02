@@ -21,5 +21,8 @@
     <select id="LatestDust" resultType="com.airlc.dto.DustVO">
         SELECT * FROM dust order by date desc limit 1
     </select>
+    <select id="ApiDust" resultType="com.airlc.dto.DustVO">
+        SELECT * FROM api
+    </select>
     
 </mapper>

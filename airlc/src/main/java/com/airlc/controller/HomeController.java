@@ -1,5 +1,7 @@
 package com.airlc.controller;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.List;
 import java.util.Locale;
 import javax.inject.Inject;
@@ -21,6 +23,7 @@ import com.airlc.dto.HumVO;
 import com.airlc.service.HumService;
 import com.airlc.service.Gpio_Service;
 import com.airlc.service.Gpio_Servicelmpl;
+import com.airlc.service.RefreshService;
 
 /**
  * Handles requests for the application home page.
@@ -41,7 +44,10 @@ public class HomeController {
 	@Inject
 	private HumService Hum_service2;
 	private Gpio_Servicelmpl Gpio_service = new Gpio_Servicelmpl();
-	
+	@Inject
+	private DustService Dust_service3;
+	private RefreshService refresh_service = new RefreshService();
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String goHome(Locale locale, Model model) throws Exception {
 		List<DustVO> dustList = Dust_service.selectDust();
@@ -57,14 +63,16 @@ public class HomeController {
 		List<HumVO> humList2 = Hum_service2.LatestHum();
 		model.addAttribute("humList2", humList2);
 		model.addAttribute("Gpio_service", Gpio_service.Pin_State());
-
+		List<DustVO> dustList3 = Dust_service3.ApiDust();
+		model.addAttribute("dustList3", dustList3);
 		return "/home";
 	}
+
 	@RequestMapping(value = "/home_controll", method = RequestMethod.GET)
 	public String goHome_btn(HttpServletRequest httpServletRequest, Model model) throws Exception {
 		String act = httpServletRequest.getParameter("act");
 		Gpio_service.Activate(act);
-		model.addAttribute("Gpio_service",Gpio_service.Pin_State());
+		model.addAttribute("Gpio_service", Gpio_service.Pin_State());
 		return "redirect:/home";
 	}
 
@@ -76,16 +84,17 @@ public class HomeController {
 		model.addAttribute("tempList", tempList);
 		List<HumVO> humList = Hum_service.selectHum();
 		model.addAttribute("humList", humList);
-		model.addAttribute("Gpio_service",Gpio_service.Pin_State());
-		
+		model.addAttribute("Gpio_service", Gpio_service.Pin_State());
+
 		return "/charts";
 	}
+
 	@RequestMapping(value = "/charts_controll", method = RequestMethod.GET)
 	public String goCharts_controll(HttpServletRequest httpServletRequest, Model model) throws Exception {
 		String act = httpServletRequest.getParameter("act");
 		Gpio_service.Activate(act);
-		model.addAttribute("Gpio_service",Gpio_service.Pin_State());
-		
+		model.addAttribute("Gpio_service", Gpio_service.Pin_State());
+
 		return "redirect:/charts";
 	}
 
@@ -99,6 +108,51 @@ public class HomeController {
 		model.addAttribute("humList", humList);
 
 		return "/tables";
+	}
+
+	@RequestMapping(value = "/refresh_home", method = RequestMethod.GET)
+	public String getRefreshHome(HttpServletRequest request, Model model) throws Exception {
+		refresh_service.Run();
+		long saveTime = System.currentTimeMillis();
+		long currTime = System.currentTimeMillis();
+		while (currTime - saveTime < 9000) {
+			currTime = System.currentTimeMillis();
+		}
+		List<DustVO> dustList = Dust_service.selectDust();
+		model.addAttribute("dustList", dustList);
+		List<TempVO> tempList = Temp_service.selectTemp();
+		model.addAttribute("tempList", tempList);
+		List<HumVO> humList = Hum_service.selectHum();
+		model.addAttribute("humList", humList);
+		List<DustVO> dustList2 = Dust_service2.LatestDust();
+		model.addAttribute("dustList2", dustList2);
+		List<TempVO> tempList2 = Temp_service2.LatestTemp();
+		model.addAttribute("tempList2", tempList2);
+		List<HumVO> humList2 = Hum_service2.LatestHum();
+		model.addAttribute("humList2", humList2);
+		model.addAttribute("Gpio_service", Gpio_service.Pin_State());
+		List<DustVO> dustList3 = Dust_service3.ApiDust();
+		model.addAttribute("dustList3", dustList3);
+
+		return "redirect:/home";
+	}
+
+	@RequestMapping(value = "/refresh_table", method = RequestMethod.GET)
+	public String getRefreshTable(HttpServletRequest request, Model model) throws Exception {
+		refresh_service.Run();
+		long saveTime = System.currentTimeMillis();
+		long currTime = System.currentTimeMillis();
+		while (currTime - saveTime < 9000) {
+			currTime = System.currentTimeMillis();
+		}
+		List<DustVO> dustList = Dust_service.selectDust();
+		model.addAttribute("dustList", dustList);
+		List<TempVO> tempList = Temp_service.selectTemp();
+		model.addAttribute("tempList", tempList);
+		List<HumVO> humList = Hum_service.selectHum();
+		model.addAttribute("humList", humList);
+
+		return "redirect:/tables";
 	}
 
 }

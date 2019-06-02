@@ -107,6 +107,7 @@ input:checked + .slider:before {
 
 <script type="text/javascript">
    $(document).ready(function() {
+      
       var d = new Date();
        var currentDate = d.getFullYear() + "." + ( d.getMonth() + 1 ) + "." + d.getDate();
        var currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
@@ -139,75 +140,75 @@ input:checked + .slider:before {
       
       var ugm3Api = new Array();
       var dustDateApi = new Array();
-      <c:forEach items="${dustList}" var="dustList">
-          ugm3Api.push("${dustList.ugm3}");
-          dustDateApi.push("${dustList.date}");
+      var areaApi =  new Array();
+      <c:forEach items="${dustList3}" var="dustList3">
+          ugm3Api.push("${dustList3.ugm3}");
+          dustDateApi.push("${dustList3.date}");
+          areaApi.push("${dustList3.area}");
       </c:forEach>
       
       var tabledataApi = new Array();
-      for (var i = 0; i < dustDate.length;i++) {
-         tabledataApi[i] = [dustDateApi[i], ugm3Api[i]];
+      for (var i = 0; i < dustDateApi.length;i++) {
+         tabledataApi[i] = [areaApi[i], dustDateApi[i], ugm3Api[i]];
       }
       
       // 외부 정보 데이터 테이블 만들기
       $('#dataTableOut').dataTable().fnAddData(tabledataApi);
       
       // 실내 정보 테이블 갱신
-      $('#refreshIn').click(function(){
-         var ugm3 = new Array();
-          var dustDate = new Array();
-         <c:forEach items="${dustList}" var="dustList">
-            ugm3.push("${dustList.ugm3}");
-            dustDate.push("${dustList.date}");
-         </c:forEach>
+//       $('#refreshIn').click(function(){
+//     	  var d = new Date();
+//           var currentDate = d.getFullYear() + "." + ( d.getMonth() + 1 ) + "." + d.getDate();
+//           var currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+//           $('.time').text("Update " + currentDate + " "  + currentTime);
          
-         var temp = new Array();
-          <c:forEach items = "${tempList}" var = "tempList">
-             temp.push("${tempList.temp}");
-         </c:forEach>
+//          var ugm3 = new Array();
+//          var dustDate = new Array();
+//          <c:forEach items="${dustList}" var="dustList">
+//             ugm3.push("${dustList.ugm3}");
+//             dustDate.push("${dustList.date}");
+//          </c:forEach>
          
-         var hum = new Array();
-          <c:forEach items = "${humList}" var = "humList">
-               hum.push("${humList.hum}");
-         </c:forEach>
+//          var temp = new Array();
+//           <c:forEach items = "${tempList}" var = "tempList">
+//              temp.push("${tempList.temp}");
+//          </c:forEach>
          
-         var tabledata = new Array();
-         for (var i = 0; i < dustDate.length;i++) {
-            tabledata[i] = [dustDate[i], temp[i], hum[i], ugm3[i]];
-         }
-         $('#dataTableIn').dataTable().fnClearTable(); 
-         $('#dataTableIn').dataTable().fnAddData(tabledata);
+//          var hum = new Array();
+//           <c:forEach items = "${humList}" var = "humList">
+//                hum.push("${humList.hum}");
+//          </c:forEach>
          
-         var d = new Date();
-           var currentDate = d.getFullYear() + "." + ( d.getMonth() + 1 ) + "." + d.getDate();
-           var currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-           $('#timeIn').text("Update " + currentDate + " "  + currentTime);
-      });
-      
-      // 실외 정보 테이블 갱신
-      $('#refreshOut').click(function(){
-         var ugm3Api = new Array();
-          var dustDateApi = new Array();
-          <c:forEach items="${dustList}" var="dustList">
-              ugm3Api.push("${dustList.ugm3}");
-              dustDateApi.push("${dustList.date}");
-          </c:forEach>
-          
-          var tabledataApi = new Array();
-          for (var i = 0; i < dustDate.length;i++) {
-             tabledataApi[i] = [dustDateApi[i], ugm3Api[i]];
-          }
-          
-          $('#dataTableOut').dataTable().fnClearTable(); 
-          $('#dataTableOut').dataTable().fnAddData(tabledataApi);
-          
-          var d = new Date();
-            var currentDate = d.getFullYear() + "." + ( d.getMonth() + 1 ) + "." + d.getDate();
-            var currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-            $('#timeOut').text("Update " + currentDate + " "  + currentTime);
-      });
-      
-    
+//          var tabledata = new Array();
+//          for (var i = 0; i < dustDate.length;i++) {
+//             tabledata[i] = [dustDate[i], temp[i], hum[i], ugm3[i]];
+//          }
+         
+//          // 내부 정보 데이터 테이블 만들기
+//          $('#dataTableIn').dataTable().fnAddData(tabledata);
+         
+//          var ugm3Api = new Array();
+//          var dustDateApi = new Array();
+//          var areaApi =  new Array();
+//          <c:forEach items="${dustList3}" var="dustList3">
+//              ugm3Api.push("${dustList3.ugm3}");
+//              dustDateApi.push("${dustList3.date}");
+//              areaApi.push("${dustList3.area}");
+//          </c:forEach>
+         
+//          var tabledataApi = new Array();
+//          for (var i = 0; i < dustDateApi.length;i++) {
+//             tabledataApi[i] = [areaApi[i], dustDateApi[i], ugm3Api[i]];
+//          }         
+//          // 외부 정보 데이터 테이블 만들기
+//          $('#dataTableOut').dataTable().fnAddData(tabledataApi);
+
+//            $.ajax({
+
+// 				type : "get",
+// 				url : "/airlc/refresh_home",
+// 			})
+//       });
       $('#tg').change(function() {
 			var act = {
 				"act" : $(this).prop('checked')
@@ -220,7 +221,7 @@ input:checked + .slider:before {
 				url : "/airlc/home_controll",
 				data : act,
 			})
-		});
+      });
    });
 </script>
 </head>
@@ -251,9 +252,7 @@ input:checked + .slider:before {
       </a>
          <div class="dropdown-menu dropdown-menu-right"
             aria-labelledby="userDropdown">
-            <!-- <a class="dropdown-item" href="#">Settings</a> <a
-               class="dropdown-item" href="#">Activity Log</a>
-            <div class="dropdown-divider"></div> -->
+
             <a class="dropdown-item" href="#" data-toggle="modal"
                data-target="#logoutModal">Logout</a>
          </div></li>
@@ -268,8 +267,9 @@ input:checked + .slider:before {
          <li class="nav-item active"><a class="nav-link" href="home">
                <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
          </a></li>
+
          <li class="nav-item">
-            <a class="nav-link"
+            <!-- <a id="chart" class="nav-link"> --> <a class="nav-link"
             href="charts"> <i class="fas fa-fw fa-chart-area"></i> <span>Chart</span></a>
          </li>
          <li class="nav-item"><a class="nav-link" href="tables"> <i
@@ -363,9 +363,11 @@ input:checked + .slider:before {
                <div class="card-header">
                   <i class="fas fa-table"></i> Inside Information
                   <span class="float-right"> 
-                     <button id="refreshIn" type="button" class="btn btn-labeled btn-info">
+                  <form action="/airlc/refresh_home" method="get">
+                     <button id="refreshIn" type="submit" class="btn btn-labeled btn-info">
                              <i class="fas fa-sync-alt"></i>
                           </button>
+                          </form>
                      </span>
                </div>
                <div class="card-body">
@@ -393,17 +395,12 @@ input:checked + .slider:before {
                      </table>
                   </div>
                </div>
-               <div id="timeIn"class="time card-footer small text-muted"></div>
+               <div id="time"class="time card-footer small text-muted"></div>
             </div>
 
             <div class="card mb-3">
                <div class="card-header">
                   <i class="fas fa-table"></i> Outside Information
-                  <span class="float-right"> 
-                     <button id="refreshOut" type="button" class="btn btn-labeled btn-info">
-                             <i class="fas fa-sync-alt"></i>
-                          </button>
-                     </span>
                </div>
                <div class="card-body">
                   <div class="table-responsive">
@@ -411,14 +408,14 @@ input:checked + .slider:before {
                         cellspacing="0">
                         <thead>
                            <tr>
-                              <!-- <th>Position</th> -->
+                              <th>Position</th>
                               <th>Date</th>
                               <th>Micro Dust</th>
                            </tr>
                         </thead>
                         <tfoot>
                            <tr>
-                              <!-- <th>Position</th> -->
+                              <th>Position</th>
                               <th>Date</th>
                               <th>Micro Dust</th>
                            </tr>
@@ -428,7 +425,7 @@ input:checked + .slider:before {
                      </table>
                   </div>
                </div>
-               <div id="timeOut" class="time card-footer small text-muted"></div>
+               <div id="time" class="time card-footer small text-muted"></div>
             </div>
 
          </div>
@@ -471,7 +468,7 @@ input:checked + .slider:before {
             <div class="modal-footer">
                <button class="btn btn-secondary" type="button"
                   data-dismiss="modal">Cancel</button>
-               <a class="btn btn-primary" href="logout">Logout</a>
+               <a class="btn btn-primary" href="login">Logout</a>
             </div>
          </div>
       </div>
